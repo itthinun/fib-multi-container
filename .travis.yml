@@ -19,6 +19,13 @@ after_success:
     # Login to docker cli
     # move login step to scripts/travis.sh
     # Take those images and push them to docker hub
+
+    #docker tag
+    - docker tag multi-client itthinun/multi-client
+    - docker tag multi-nginx itthinun/multi-nginx
+    - docker tag multi-server itthinun/multi-server
+    - docker tag multi-worker itthinun/multi-worker
+    
     - docker push itthinun/multi-client
     - docker push itthinun/multi-nginx
     - docker push itthinun/multi-server
