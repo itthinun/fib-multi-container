@@ -27,6 +27,5 @@ EOF
 key=$(gpg --no-auto-check-trustdb --list-secret-keys | grep ^sec | cut -d/ -f2 | cut -d" " -f1)
 pass init $key
 
-ls -l /usr/local/bin/docker-credential-pass
-echo $PATH
+docker-credential-pass list
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
