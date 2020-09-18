@@ -24,6 +24,4 @@ Expire-Date: 0
 EOF
 key=$(gpg --no-auto-check-trustdb --list-secret-keys | grep ^sec | cut -d/ -f2 | cut -d" " -f1)
 pass init $key
-echo "pass is initialized." | pass insert docker-credential-helpers/docker-pass-initialized-check
-pass show docker-credential-helpers/docker-pass-initialized-check
-docker-credential-pass list
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
