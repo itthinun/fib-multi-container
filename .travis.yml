@@ -6,20 +6,20 @@ services:
 
 before_install:
     - scripts/travis.sh
-    - docker build -t bdev/client-test -f ./client/Dockerfile.dev ./client
+    - docker build -t itthinun/client-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true bdev/client-test npm test
+    - docker run -e CI=true itthinun/client-test npm test
 
 after_success:
-    - docker build -t bdev/multi-client ./client
-    - docker build -t bdev/multi-nginx ./nginx
-    - docker build -t bdev/multi-server ./server
-    - docker build -t bdev/multi-worker ./worker
+    - docker build -t itthinun/multi-client ./client
+    - docker build -t itthinun/multi-nginx ./nginx
+    - docker build -t itthinun/multi-server ./server
+    - docker build -t itthinun/multi-worker ./worker
     # Login to docker cli
-    #
+    # move login step to scripts/travis.sh
     # Take those images and push them to docker hub
-    - docker push bdev/multi-client
-    - docker push bdev/multi-nginx
-    - docker push bdev/multi-server
-    - docker push bdev/multi-worker
+    - docker push itthinun/multi-client
+    - docker push itthinun/multi-nginx
+    - docker push itthinun/multi-server
+    - docker push itthinun/multi-worker
