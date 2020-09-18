@@ -10,6 +10,7 @@ sudo service docker restart
 wget https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-pass-v0.6.3-amd64.tar.gz
 tar -xzf docker-credential-pass-v0.6.3-amd64.tar.gz
 sudo mv docker-credential-pass /usr/local/bin/
+chmod 777 /usr/local/bin/docker-credential-pass
 mkdir -p /home/travis/.docker
 echo '{ "credsStore": "pass" }' | tee /home/travis/.docker/config.json
 gpg --batch --gen-key <<-EOF
