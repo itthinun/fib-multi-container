@@ -12,15 +12,15 @@ script:
     - docker run -e CI=true itthinun/client-test npm test
 
 after_success:
-    - docker build -t itthinun/multi-client:latest ./client
-    - docker build -t itthinun/multi-nginx:latest ./nginx
-    - docker build -t itthinun/multi-server:latest ./server
-    - docker build -t itthinun/multi-worker:latest ./worker
+    - docker build -t itthinun/multi-container/multi-client:latest ./client
+    - docker build -t itthinun/multi-container/multi-nginx:latest ./nginx
+    - docker build -t itthinun/multi-container/multi-server:latest ./server
+    - docker build -t itthinun/multi-container/multi-worker:latest ./worker
     # Login to docker cli
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
-    - docker push itthinun/multi-client:latest
-    - docker push itthinun/multi-nginx:latest
-    - docker push itthinun/multi-server:latest
-    - docker push itthinun/multi-worker:latest
+    - docker push itthinun/multi-container/multi-client:latest
+    - docker push itthinun/multi-container/multi-nginx:latest
+    - docker push itthinun/multi-container/multi-server:latest
+    - docker push itthinun/multi-container/multi-worker:latest
     - docker logout
