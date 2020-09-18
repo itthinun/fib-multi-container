@@ -12,21 +12,14 @@ script:
     - docker run -e CI=true itthinun/client-test npm test
 
 after_success:
-    - docker build -t itthinun/multi-client ./client
-    - docker build -t itthinun/multi-nginx ./nginx
-    - docker build -t itthinun/multi-server ./server
-    - docker build -t itthinun/multi-worker ./worker
+    - docker build -t itthinun/multi-client:latest ./client
+    - docker build -t itthinun/multi-nginx:latest ./nginx
+    - docker build -t itthinun/multi-server:latest ./server
+    - docker build -t itthinun/multi-worker:latest ./worker
     # Login to docker cli
     # move login step to scripts/travis.sh
     # Take those images and push them to docker hub
-
-    #docker tag
-    - docker tag multi-client itthinun/multi-client
-    - docker tag multi-nginx itthinun/multi-nginx
-    - docker tag multi-server itthinun/multi-server
-    - docker tag multi-worker itthinun/multi-worker
-    
-    - docker push itthinun/multi-client
-    - docker push itthinun/multi-nginx
-    - docker push itthinun/multi-server
-    - docker push itthinun/multi-worker
+    - docker push itthinun/multi-client:latest
+    - docker push itthinun/multi-nginx:latest
+    - docker push itthinun/multi-server:latest
+    - docker push itthinun/multi-worker:latest
