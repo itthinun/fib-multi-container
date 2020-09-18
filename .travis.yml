@@ -5,6 +5,10 @@ services:
     - docker
 
 before_install:
+    - sudo apt-get update
+    - sudo apt-get -y install docker-ce pass
+    - echo 'DOCKER_OPTS="--experimental"' | sudo tee /etc/default/docker
+    - sudo service docker restart
     - docker build -t bdev/client-test -f ./client/Dockerfile.dev ./client
 
 script:
