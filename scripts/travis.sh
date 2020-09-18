@@ -7,7 +7,7 @@ sudo apt -y install docker-ce pass
 echo 'DOCKER_OPTS="--experimental"' | sudo tee /etc/default/docker
 sudo service docker restart
 
-curl -fsSlL https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-pass-v0.6.3-amd64.tar.gz | sudo tar xf - -C /usr/local/bin
+curl -fsSlL https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-pass-v0.6.3-amd64.tar.gz | sudo tar xzf - -C /usr/local/bin
 mkdir -p /home/travis/.docker
 echo '{ "credsStore": "pass" }' | tee /home/travis/.docker/config.json
 gpg --batch --gen-key <<-EOF
