@@ -19,6 +19,7 @@ after_success:
     # Login to docker cli
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
+    - docker images
     - docker push itthinun/multi-client:1.0
     - docker push itthinun/multi-nginx:1.0
     - docker push itthinun/multi-server:1.0
