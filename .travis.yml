@@ -17,9 +17,10 @@ after_success:
     - docker build -t itthinun/multi-server:latest ./server
     - docker build -t itthinun/multi-worker:latest ./worker
     # Login to docker cli
-    # move login step to scripts/travis.sh
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
     - docker push itthinun/multi-client:latest
     - docker push itthinun/multi-nginx:latest
     - docker push itthinun/multi-server:latest
     - docker push itthinun/multi-worker:latest
+    - docker logout

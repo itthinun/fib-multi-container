@@ -27,6 +27,3 @@ Expire-Date: 0
 EOF
 key=$(gpg --no-auto-check-trustdb --list-secret-keys | grep ^sec | cut -d/ -f2 | cut -d" " -f1)
 pass init $key
-
-docker-credential-pass list
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
