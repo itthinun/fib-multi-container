@@ -6,22 +6,22 @@ services:
 
 before_install:
     - scripts/travis.sh
-    - docker build -t itthinun/client-test -f ./client/Dockerfile.dev ./client
+    - docker build -t "$DOCKER_ID"/client-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true itthinun/client-test npm test
+    - docker run -e CI=true "$DOCKER_ID"/client-test npm test
 
 after_success:
-    - docker build -t itthinun/multi-client:1.0 ./client
-    - docker build -t itthinun/multi-nginx:1.0 ./nginx
-    - docker build -t itthinun/multi-server:1.0 ./server
-    - docker build -t itthinun/multi-worker:1.0 ./worker
+    - docker build -t "$DOCKER_ID"/multi-client:1.0 ./client
+    - docker build -t "$DOCKER_ID"/multi-nginx:1.0 ./nginx
+    - docker build -t "$DOCKER_ID"/multi-server:1.0 ./server
+    - docker build -t "$DOCKER_ID"/multi-worker:1.0 ./worker
     # Login to docker cli
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
     - docker images
-    - docker push itthinun/multi-client:1.0
-    - docker push itthinun/multi-nginx:1.0
-    - docker push itthinun/multi-server:1.0
-    - docker push itthinun/multi-worker:1.0
+    - docker push "$DOCKER_ID"/multi-client:1.0
+    - docker push "$DOCKER_ID"/multi-nginx:1.0
+    - docker push "$DOCKER_ID"/multi-server:1.0
+    - docker push "$DOCKER_ID"/multi-worker:1.0
     - docker logout
